@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace EFCore.Practices.Tests
 {
@@ -248,7 +249,7 @@ namespace EFCore.Practices.Tests
 
             for (int i = 0; i < count; i++)
             {
-                logger.Log(LogLevel.Critical, new EventId(i), new DbCommandLogData("hoi", System.Data.CommandType.Text, 0, new List<DbParameterLogData>().AsReadOnly(), null), null, null);
+                logger.Log<object>(LogLevel.Critical, new EventId(i), null, null, null);
             }
 
             return provider;

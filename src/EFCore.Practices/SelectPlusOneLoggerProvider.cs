@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Data.Common;
 
 namespace EFCore.Practices
 {
@@ -75,7 +76,7 @@ namespace EFCore.Practices
 
             public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
             {
-                var command = state as DbCommandLogData;
+                var command = state as DbCommand;
                 if (command != null)
                 {
                     var count = commands.AddOrUpdate(command.CommandText, 1, (key, old) => old + 1);
