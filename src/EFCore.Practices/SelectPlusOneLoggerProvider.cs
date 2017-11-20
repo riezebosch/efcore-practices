@@ -76,10 +76,10 @@ namespace EFCore.Practices
 
             public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
             {
-                var command = state as DbCommand;
-                if (command != null)
+                if (formatter != null)
                 {
-                    var count = commands.AddOrUpdate(command.CommandText, 1, (key, old) => old + 1);
+                    var message = formatter(state, exception);
+                    var count = commands.AddOrUpdate(message, 1, (key, old) => old + 1);
                 }
             }
 
