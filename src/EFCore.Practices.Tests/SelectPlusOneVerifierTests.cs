@@ -28,7 +28,7 @@ namespace EFCore.Practices.Tests
             get
             {
                 return new DbContextOptionsBuilder<SchoolContext>()
-                    .UseSqlServer(@"Server=.\SQLEXPRESS;Database=School;Trusted_Connection=True;");
+                    .UseSqlServer(@"Server=.;Database=School;User Id=sa;Password=Pa$$w0rd;");
             }
         }
 
